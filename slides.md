@@ -304,11 +304,15 @@ func main() {
 }
 ```
 
+---
+
 ### Data Structures
 
 1. For Loops
 2. Arrays
 3. Slices
+
+---
 
 #### For Loops
 
@@ -326,6 +330,8 @@ func main() {
 }
 ```
 
+---
+
 Like in JS, we instantiate our counter `i` at 1, and then for every iteration as long as our counter `i` is below 100, we print its value and then add one.
 
 A shorter way to write this that looks more JS familiar is:
@@ -337,6 +343,8 @@ A shorter way to write this that looks more JS familiar is:
     }
   }
 ```
+
+---
 
 #### If & Switch Statements
 
@@ -352,6 +360,8 @@ An example if statement:
   }
 ```
 
+---
+
 An example switch statement:
 
 ```go
@@ -362,6 +372,8 @@ An example switch statement:
   default: fmt.Println("WTF")
   }
 ```
+
+---
 
 #### Arrays
 
@@ -383,6 +395,8 @@ const grabBag = ["banana", 45, true, "2"];
 var scores = [5]float64
 ```
 
+---
+
 In JS, defining an array is pretty chill.
 
 You can make it whatever length you want, you can modify that length, and you can throw any combination of data
@@ -390,8 +404,12 @@ types into it.
 
 Go, however, has _opinions_. You must define a fixed length of elements, all of which must be of the same type. In the above example, our variable `scores` is an array of 5 elements, each of which is a float.
 
+---
+
 > **_TRY IT_**
 > In the Go playground, print out the variable `scores` as is. What do you see?
+
+---
 
 To add elements into this array, both JavaScript and Go allow you to insert elements into a specific index location.
 
@@ -402,6 +420,8 @@ grabBag[0] = "hello"; // => ["hello"]
 ```go
 ages[0] = 5 // => [5, 0, 0, 0, 0]
 ```
+
+---
 
 To add multiple elements, you could start by doing something like this:
 
@@ -414,17 +434,25 @@ To add multiple elements, you could start by doing something like this:
   scores[4] = 8
 ```
 
+---
+
 Or, to avoid setting each index individually:
 
 ```go
 scores := [5]float64{9, 1.5, 4.5, 7, 8}
 ```
 
+---
+
 > _TRY IT_
 > Using the array above and a for loop, print out the average score within the array.
 > Hint: To find the length of an array, use `len(array)`.
 
+---
+
 What unexpected errors did you run into? How did you fix them?
+
+---
 
 When looping over arrays, we can implement a different version of the basic for loop using the `range` keyword:
 
@@ -441,9 +469,13 @@ Let's break it down:
 -   `value` represents the value of the element at that index (aka `scores[i]`)
 -   `range` is a keyword that is followed by the variable representing the array we are looping over
 
+---
+
 > _TRY IT_
 > What happens when you replace the for loop from finding the average score with
 > this one?
+
+---
 
 As we've seen, Go is very particular about types and making sure any declared variable is used within a program. In this case, we aren't using the `i` variable representing the index of the array and we get this error:
 
@@ -451,13 +483,19 @@ As we've seen, Go is very particular about types and making sure any declared va
 i declared and not used
 ```
 
+---
+
 Go uses a single underscore, `_`, to replace an unused variable within a program. Make this modification and watch the program pass.
+
+---
 
 Defining an array with a specific length can cause some obvious problems.
 
 Adding or removing an element would require redefining the entire variable signature to specify a different length, which often is unknown.
 
 This brings us to Slices.
+
+---
 
 #### Slice
 
@@ -469,6 +507,8 @@ Instantiating a slice looks almost identical to instantiating an array, just wit
   var scores[]float64
 ```
 
+---
+
 Because slices are segments of an array, they must always be associated with an underlying array.
 
 To create a slice, you must use the `make` function with takes two arguments - what you are instantiating, and a length.
@@ -477,10 +517,14 @@ To create a slice, you must use the `make` function with takes two arguments - w
   scores := make([]float64, 5)
 ```
 
+---
+
 Here, we are associating our slice called `scores` with an array containing 5 elements of type `float64`.
 
 Note that slices can never be longer than their associated array, but they can
 be smaller.
+
+---
 
 We can add a third argument to `make()` to tell go how much of an underlying
 array to take up, and what length the underlying array should be:
@@ -489,8 +533,12 @@ array to take up, and what length the underlying array should be:
  scores := make([]float64, 5, 10)
 ```
 
+---
+
 This would create a slice of 5 elements of type `float64`, associated with an
 underlying array that has a length of 10.
+
+---
 
 ##### Slice Helper Methods
 
@@ -503,6 +551,8 @@ Append:
   slice2 := append(slice1, 4, 5)
   fmt.Println(slice1, slice2)
 ```
+
+---
 
 Copy:
 
@@ -522,11 +572,17 @@ Copy:
 }
 ```
 
+---
+
 > _TRY IT_
 > Run the example code from Copy block.
 > What do you notice about the resulting data object?
 
+---
+
 #### Maps
+
+---
 
 Maps look and behave similarly to Objects in JavaScript, using a set of key
 value pairs.
@@ -537,6 +593,8 @@ value type.
 ```go
  var pilotsAges map[string]int
 ```
+
+---
 
 Here we are telling Go to create a map called `pilotsAges` which will have keys as
 strings, and values as integers.
@@ -550,8 +608,12 @@ Let's build one with data in it:
   fmt.Println(pilotsAges)
 ```
 
+---
+
 > _TRY IT_
 > Throw that code into the Go playground. What happens? What are we missing?
+
+---
 
 If we run the above code as-is, we'll see the following error:
 
@@ -559,13 +621,19 @@ If we run the above code as-is, we'll see the following error:
 panic: assignment to entry in nil map
 ```
 
+---
+
 The (run-time!) error here, indicated by the keyword `panic`, is telling us that
 we're trying to assign entries to a map that doesn't exist yet.
+
+---
 
 Look at where we are declaring our `pilotsAges` variable. Here, we are telling
 go to create a variable called `pilotsAges` that will have a type of map with
 particular key value pair types. We haven't actually set that variable to a
 value of any kind.
+
+---
 
 Remember the `make` function from our slice examples? Let's do that now.
 
@@ -578,6 +646,8 @@ Remember the `make` function from our slice examples? Let's do that now.
   fmt.Println(pilotsAges)
 ```
 
+---
+
 Or, with the shorthand syntax:
 
 ```go
@@ -586,6 +656,8 @@ Or, with the shorthand syntax:
   pilotsAges["goose"] = 27
   fmt.Println(pilotsAges)
 ```
+
+---
 
 Now we should see:
 `map[goose:27 maverick:30]`
@@ -597,8 +669,12 @@ with objects in JS:
 pilotsAges["maverick"] // ==> 30
 ```
 
+---
+
 > _TRY IT_
 > What happens if you ask for a key that doesn't exist?
+
+---
 
 Go has a clever way to handle checking for null values. Looking up a value
 within a map actually returns two elements: the value (if it exists), and a
@@ -608,6 +684,8 @@ boolean for whether or not that value existed.
   icemansAge, ok := pilotsAges["iceman"]
   fmt.Println(icemansAge, ok)
 ```
+
+---
 
 This makes it easy to add logic around checking for null values within our
 program using an if statement:
@@ -620,12 +698,18 @@ program using an if statement:
   }
 ```
 
+---
+
 First, we create the two variables `icemansAge` and `ok` inside our if
 statement and set them to the two elements we get back from a lookup in our map.
+
+---
 
 Then, we check what boolean we got back in our `ok` variable. The code within
 the first block will fire only if `ok` returns true, otherwise our if block will
 continue to the else block.
+
+---
 
 As with arrays, we can simplify creating our map using abbreviated syntax:
 
@@ -636,10 +720,14 @@ pilotsAges := map[string]int{
 }
 ```
 
+---
+
 #### Functions
 
 Functions in Go, like in most languages, map a specified set of inputs
 to a specified output.
+
+---
 
 In Go specifically, the input parameters also require a type definition, and there is an optional return type definition.
 
@@ -649,6 +737,8 @@ func printAge(age int) int {
   return age
 }
 ```
+
+---
 
 A function can also return multiple values, which both need to be specified in
 the return type definition:
@@ -663,10 +753,14 @@ the return type definition:
   }
 ```
 
+---
+
 > _TRY IT_
 > Create a function called `average` that takes an array of floats.
 > The function should return the average of the provided array.
 > Make sure to call this function from within `main()`
+
+---
 
 Similar to the spread/rest operator in JavaScript, you can pass an unspecified number
 of arguments to a function.
@@ -685,6 +779,8 @@ of arguments to a function.
   }
 ```
 
+---
+
 ##### A Note About Scope
 
 Functions do not have access to variables that are not global, or defined within
@@ -692,6 +788,8 @@ themselves.
 
 In the variadic example above, our `main()` function would not have access to
 the variable `total`.
+
+---
 
 #### Defer/Panic/Recover
 
@@ -702,11 +800,15 @@ certain way:
 -   `panic`: called during a run time error, halts execution of the program
 -   `recover`: tells go what to do after a panic
 
+---
+
 **Defer**
 
 Waits until everything else within a function is complete before firing.
 
 Multiple defers are executed in a `LIFO` order.
+
+---
 
 ```go
 func doThings() {
@@ -720,6 +822,8 @@ func main() {
 }
 ```
 
+---
+
 An example use case would be when opening and closing a file.
 
 ```go
@@ -729,9 +833,13 @@ defer f.Close()
 // a bunch of other code you want to run once you've opened the file
 ```
 
+---
+
 This is helpful because it keeps two functions that are closely related physically close to each other for readability.
 
 Deferred functions are also run even if a runtime panic occurs.
+
+---
 
 **Panic/Recover**
 
@@ -739,7 +847,11 @@ Panic will be called during a run time error and fatally kill execution of a
 program.
 Recover will tell Go what to do when that happens, returning what was passed to `panic`.
 
+---
+
 Note that in order for recover to do its job it must be paired with `defer`, which will fire even after a `panic`, otherwise `panic` completely shuts down the execution of a program.
+
+---
 
 ```go
 func doThings() {
@@ -756,9 +868,13 @@ func main() {
 }
 ```
 
+---
+
 With the above code, once we hit the `panic()` function, our program will stop
-executing. Adding a `recover()` cleanup function will tell our pgoram what to do
+executing. Adding a `recover()` cleanup function will tell our program what to do
 when this happens.
+
+---
 
 ```go
 func handlePanic() {
@@ -783,13 +899,19 @@ func main() {
 }
 ```
 
+---
+
 > _TRY IT_
 > Add a line that tries to print something to the console after the panic
 > function.
 > Comment out the defer function
 > What happens?
 
+---
+
 #### Pointers
+
+---
 
 When we pass an argument to a function in Go without any additional symbols, we
 are passing the function a **copy** of the original variable.
@@ -814,19 +936,27 @@ memory.
   }
 ```
 
+---
+
 As you noticed, the variable `name` within the `main()` function is not modified.
 It still prints out `Iceman` even though our `makeTopGun()` function is reassigning
 that variable to be `Maverick`.
 
+---
+
 Check out what the `name` argument prints to the console within the `makeTopGun`
 function. You should see the string `Iceman`, which is a COPY of the value of the
 variable `name.`
+
+---
 
 Sometimes the intended behavior is not to modify the original variable - but what if we DO want to modify that variable?
 
 This is when we would want to use something called a `Pointer`, which is
 indicated by adding a `*` in front of the type definition in the argument, and tells Go to
 expect the actual data stored in memory.
+
+---
 
 ```go
   func makeTopGun(name *string) {
@@ -841,6 +971,8 @@ expect the actual data stored in memory.
   }
 ```
 
+---
+
 You'll notice that within the `main()` function we also added a `&`
 character in front of the `name` variable as we pass it to our `makeTopGun`
 function.
@@ -848,7 +980,11 @@ function.
 When we run it this time, we see that the variable has been permanently modified
 and now prints out `Maverick`. WTF.
 
+---
+
 #### \* and &
+
+---
 
 So what's actually happening here?
 
@@ -858,10 +994,14 @@ In Go, a function indicates it's expecting a `pointer` by placing an asterisk `*
 func myFunc(arg *string)
 ```
 
+---
+
 Here, our function is expecting `arg` to be a POINTER, pointing to the actual
 location in memory that stores this variable.
 
 Similarly (but different), an asterisk `*` is ALSO used to _dereference_ a pointer variable.
+
+---
 
 Within the `makeTopGun()` function above, we wrote `*name = "Maverick"`. This line is saying: store the string "Maverick" in the _memory location_ we just passed to our function.
 
@@ -870,18 +1010,30 @@ Within the `makeTopGun()` function above, we wrote `*name = "Maverick"`. This li
 > pointer.
 > Try removing the `*` from the last line in `makeTopGun()` to turn it back into a non dereferenced variable
 
+---
+
 This is because _Go has rules_, and it is expecting the incoming string to be a
 pointer value and will ardently refuse to work with anything else.
+
+---
 
 Lastly - the `&` tells Go to find the memory location of that variable instead
 of making a copy of it.
 
+---
+
 Once go finds that memory location, it will return the pointer version of that variable and pass that along, allowing us to modify the original variable.
+
+---
 
 #### Structs and Interfaces
 
+---
+
 Go provides data structures that allow you as a developer to define your own
 types for commonly used objects and sets of methods.
+
+---
 
 A `struct` is a collection of fields that have defined types and is reusable
 across your program.
@@ -895,6 +1047,8 @@ type Pilot struct {
 }
 ```
 
+---
+
 Another way to write this is:
 
 ```go
@@ -902,6 +1056,8 @@ type Pilot struct {
   firstName, lastName, city string
 }
 ```
+
+---
 
 We can now treat the `Pilot` struct as a type of variable and instantiate it
 with or without default values.
@@ -914,12 +1070,16 @@ p.callsign = "Maverick"
 p.aircraft = "f14"
 ```
 
+---
+
 Or in shorthand
 
 ```go
 p := Pilot{firstName: "Pete", lastName: "Mitchell", callsign: "Maverick",
 aircraft: "f14"
 ```
+
+---
 
 Then, in order to access the fields, we use dot notation similar to working with
 Objects in JS.
@@ -928,6 +1088,8 @@ Objects in JS.
 p := Pilot{firstName: "Pete", lastName: "Mitchell", callsign: "Maverick",
 fmt.Println(p.firstName) // => "Pete"
 ```
+
+---
 
 To use a struct within a function, we simply add the struct name within the
 function signature as the type of argument we are passing in.
@@ -939,6 +1101,8 @@ func introducePilot(p Pilot) string {
 }
 ```
 
+---
+
 In `main()`, add a few lines to call this function.
 
 ```go
@@ -948,6 +1112,8 @@ func main() {
   fmt.Println(pilotIntro)
 }
 ```
+
+---
 
 Let's create another struct for our squadron of pilots
 
@@ -959,6 +1125,8 @@ type Squadron struct {
 }
 ```
 
+---
+
 Next, create a function that introduces the squadron:
 
 ```go
@@ -968,7 +1136,11 @@ func introduceSquadron(s Squadron) string {
 }
 ```
 
+---
+
 In main we can call create instances of our structs and call each function:
+
+---
 
 ```go
 func main() {
@@ -981,6 +1153,8 @@ func main() {
 }
 ```
 
+---
+
 What if in `introduceSquardon` we wanted to modify who was Top Gun?
 
 > _TRY IT_
@@ -988,7 +1162,11 @@ What if in `introduceSquardon` we wanted to modify who was Top Gun?
 > Then, print out the squadron variable `s` at the end of `main()`. What do you
 > notice?
 
+---
+
 Remember in Go that arguments are **COPIES** of the variables we pass in. In order to permanently modify the original variable, we need to use pointers.
+
+---
 
 Modify the arguments to use the `&` and `*` symbols that tell Go we want access
 to the original variable in memory.
@@ -1003,7 +1181,11 @@ pilotIntro := introducePilot(&p)
 squadronIntro := introduceSquadron(&s)
 ```
 
+---
+
 #### Methods
+
+---
 
 Right now we have two very similar functions that print out introduction
 sentences about the structs we pass in.
@@ -1018,12 +1200,18 @@ structs, instead of an explicit function.
  }
 ```
 
+---
+
 The main difference between the function signatures is that now, instead of
 passing in our Pilot struct as a variable, we insert it as a `receiver` between the `func`
 keyword and the name of our more generic function, `introduce`.
 
+---
+
 This tells Go that when the `introduce` function receives (is called on) a struct with the shape
 Pilot, it should execute the code within the curly braces.
+
+---
 
 We call the method a little differently:
 
@@ -1037,8 +1225,12 @@ p := Pilot{firstName: "Pete", lastName: "Mitchell", aircraft: "f14", callsign: "
 pilotIntro := p.introduce()
 ```
 
+---
+
 Note that we no longer need to include the `&` operator - Go automatically
 passes a pointer to a method call.
+
+---
 
 > _TRY IT_
 > Modify the `introduceSquadron` function to be a method called `introduce`
@@ -1088,7 +1280,11 @@ func main() {
 }
 ```
 
+---
+
 #### Interfaces
+
+---
 
 If you think of structs as a set of properties within a type, interfaces can be
 thought of as a set of methods that define a type.
@@ -1099,13 +1295,21 @@ type TopGunEntity interface {
 }
 ```
 
+---
+
 Once again we start with the `type` keyword, followed by the name of the
 interface, and then the actual keyword `interface`.
+
+---
 
 Within the curly braces we list a set of methods that are associated with our interface type and the type
 those methods should return.
 
+---
+
 Our interface `TopGunEntity` includes any type that has a method named `introduce()`, which in our program includes `Pilot` and `Squadron`. Any type that defines this method is said to `satisfy` the `TopGunEntity` interface.
+
+---
 
 Next, create a function that can be called on any types that satisfy our
 `TopGunEntity` interface.
@@ -1116,6 +1320,8 @@ func introduceSomething(t TopGunEntity) {
   fmt.Println(t.introduce())
 }
 ```
+
+---
 
 Then, let's use our interface to introduce all of the entities in our program so far.
 
@@ -1130,6 +1336,8 @@ func main() {
 }
 ```
 
+---
+
 You can also use the empty interface type to indicate that Go should accept
 anything.
 
@@ -1142,6 +1350,8 @@ func DoSomething(v interface{}) {
   // This function will take anything as a parameter.
 }
 ```
+
+---
 
 Once again, our entire program should now look like this:
 
@@ -1195,15 +1405,23 @@ func main() {
 }
 ```
 
+---
+
 ## Packages
+
+---
 
 Packages are directories with one or more Go source files that allow Go to reuse code across a program and across files.
 
 Every go file must belong to a package.
 
+---
+
 So far, the packages we've seen are `main`, the package we wrote, `fmt` and `reflect`, which are built
 into the Go source code. There are [tons](https://golang.org/pkg/) of packages
 that come out of the box with Go.
+
+---
 
 To import packages, you list them at the top of your file either like this:
 
@@ -1212,6 +1430,8 @@ import "fmt"
 import "math"
 import "reflect"
 ```
+
+---
 
 Or more commonly, like this:
 
@@ -1222,6 +1442,8 @@ import (
   "reflect"
 )
 ```
+
+---
 
 Some of the (many) available go packages are:
 
@@ -1245,14 +1467,22 @@ Some of the (many) available go packages are:
 -   `net/http` - provides http client and server implementations
     -   Example Methods: `Get`, `Post`, `Handle`
 
+---
+
 ### Exported vs Unexported Names
+
+---
 
 When you import a package, you can only access that package's exported names
 (functions). Anything (variable, type, function) that starts with a capital
 letter is exported and is visible outside the package.
 
+---
+
 Anything that starts with a lowercase letter is NOT exported, and is only
 visible within the same package.
+
+---
 
 ```go
 fmt.Println()
@@ -1261,13 +1491,21 @@ fmt.Println()
 Within the `fmt` package, the function `Println` is exported (starts with a
 capital letter) and can be accessed within our `main` package.
 
+---
+
 ### Custom Packages
+
+---
 
 Until now we've been writing all of our go code in the `main` package and only
 using functionality from Go's imported libraries.
 
+---
+
 Let's create a folder called `utils`, and within that create a file called
 `math.go`.
+
+---
 
 In math.go add the following:
 
@@ -1283,11 +1521,15 @@ func Add(nums ...int) int {
 }
 ```
 
+---
+
 And then in our `main.go` file, lets import and use this package.
 
 Note that the import name is a path that is relative to the `src` directory.
 Often, this will be a github location as your files will live in a github
 repository.
+
+---
 
 ```go
 import {
@@ -1307,13 +1549,21 @@ func allPilots() int {
 // remember to call allPilots() in main()
 ```
 
+---
+
 ## Testing
+
+---
 
 Go includes a package, `testing`, that contains all the functions necessary to
 run a test suite and command to run those tests, `go test`.
 
+---
+
 Test file names must end with `_test.go` and the Go compiler will know to ignore
 these unless `go test` is run.
+
+---
 
 Let's create a test for our `Add` method in the `utils` directory.
 
@@ -1332,18 +1582,27 @@ func TestAdd(t *testing.T) {
 }
 ```
 
+---
+
 In tests, the test name should start with `Test` followed by the name of the
 function you are testing. The only parameter passed into the test should be `t *testing.T`.
-
 Navigate to the `utils` directory and run `go test` and watch it pass!
+
+---
 
 ## Concurrency
 
+---
+
 Goroutine: From [the docs](https://tour.golang.org/concurrency/1), a goroutine is a lightweight threat managed by the Go runtime.
+
+---
 
 A goroutine is indicated by adding the keyword `go` before the name of a
 function. This will tell Go to fire up a new gorouting running that function on
 a separate thread.
+
+---
 
 ```go
   import (
@@ -1364,6 +1623,8 @@ a separate thread.
   }
 ```
 
+---
+
 If all of the code within a function is a go routine:
 
 ```go
@@ -1375,7 +1636,11 @@ If all of the code within a function is a go routine:
 
 Everything will be non blocking, and nothing will finish execution. In order to fix this, we need to synchronize our goroutines, using the package [sync](https://golang.org/pkg/sync/).
 
+---
+
 To start, create a variable that defines a `WaitGroup` - meaning a set of go routines you want execute to completion before moving forward in your program.
+
+---
 
 ```go
 package main
@@ -1421,14 +1686,19 @@ func main() {
 }
 ```
 
+---
+
 Here, we're defining a variable that represents our WaitGroup. The `Add()`
 function takes an integer and adds it to a behind the scenes counter. If the
 counter becomes zero, all goroutines are released and the program will continue.
 
+---
+
 ## Channels
 
-Send and receive values between your goroutines.
+---
 
+Send and receive values between your goroutines.
 Create a channel but using the `make()` function, and the `chan` keyword,
 including the type declaration.
 
@@ -1436,7 +1706,11 @@ including the type declaration.
 myChannel := make(chan int)
 ```
 
+---
+
 Then, fire off a couple goroutines form which you are expecting values.
+
+---
 
 ```go
 package main
@@ -1466,8 +1740,12 @@ func main() {
 }
 ```
 
+---
+
 We can shorten this up a bit by iterating over our channel, adding back in
 WaitGroups, and including a buffer value when instantiating our channel:
+
+---
 
 ```go
 package main
@@ -1504,6 +1782,8 @@ func main() {
 	}
 }
 ```
+
+---
 
 ## Resources
 
