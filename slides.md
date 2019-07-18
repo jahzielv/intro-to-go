@@ -1,5 +1,8 @@
 # Introduction To Go for Non-Go Developers
+
 _DinosaurJS 2019_
+
+---
 
 ## Plan Of Attack
 
@@ -10,6 +13,8 @@ _DinosaurJS 2019_
 5. Concurrency with Goroutines and Channels
 6. Build A Baby App
 
+---
+
 ## Background: Why is Go A Thing?
 
 Straight from [the docs](https://golang.org/doc/faq#creating_a_new_language), Go was created to address performance and scalability issues at Google.
@@ -18,16 +23,22 @@ The options were either speedy compiling, ease of programming, or speedy executi
 
 Go fixes these problems by offering a strictly typed language that is pleasant to write in, with a super fast build time.
 
+---
+
 To do this, Go employs a lightweight but thorough type system, concurrency for handling multiple threads of work at the same time, automatic garbage collection, and strict dependency specs.
 
 The syntax of Go comes mainly from the C family, but works reduce the amount of code on the page and complexity around that code.
 
+---
+
 Obvious differences, coming from a language like JavaScript, include the following:
 
-- Go uses types. Vanilla JS and ES6+ do not.
-- Go does not have implicit error handling. If your program errors out, it will do so silently unless you explicitly tell it to behave differently. You won't get the console shouting at you if you don't tell it to.
-- Go uses goroutines to allow multi-threading, vs the single thread event call stack from Node/JS.
-- Go has opinions. There are rules that are strictly enforced and the compiler won't allow for deviations, vs JavaScript's flexible "whatever makes you happy" approach.
+-   Go uses types. Vanilla JS and ES6+ do not.
+-   Go does not have implicit error handling. If your program errors out, it will do so silently unless you explicitly tell it to behave differently. You won't get the console shouting at you if you don't tell it to.
+-   Go uses goroutines to allow multi-threading, vs the single thread event call stack from Node/JS.
+-   Go has opinions. There are rules that are strictly enforced and the compiler won't allow for deviations, vs JavaScript's flexible "whatever makes you happy" approach.
+
+---
 
 ## Installation & Setup
 
@@ -38,6 +49,8 @@ You can also use an only sandbox like [Repl.it](https://repl.it/languages/go), o
 Once you have Go installed and your GOPATH set up, create a `src` directory within your `go` directory.
 
 You can find the base repository we will be starting with [here](https://github.com/martensonbj/intro-to-go).
+
+---
 
 ## Basic Syntax And Structures
 
@@ -55,40 +68,52 @@ func main() { //3
 } // 5
 ```
 
+---
+
 1. Package Declaration
 
-- Packages are go's way of organizing and reusing code within an application
-- These packages, like classes, expose different variables that can be used within a file
-- Every go program must have at least a `main` package
-- When you run `go install` Go creates a binary file which will call the `main()` function of your program
+-   Packages are go's way of organizing and reusing code within an application
+-   These packages, like classes, expose different variables that can be used within a file
+-   Every go program must have at least a `main` package
+-   When you run `go install` Go creates a binary file which will call the `main()` function of your program
+
+---
 
 2. Imported packages and libraries
 
-- Exposes code from built in go libraries, third party packages, or internally created packages your program needs
-- In this case, the package `fmt` comes with go and provides formatting methods for standard input and output
-- Also, it's pronounced "fumpt". 🙄
+-   Exposes code from built in go libraries, third party packages, or internally created packages your program needs
+-   In this case, the package `fmt` comes with go and provides formatting methods for standard input and output
+-   Also, it's pronounced "fumpt". 🙄
+
+---
 
 3. The `main()` go function signature
 
-- Starts with a keyword `func`
-- The name of the function - `main`
-- A list of optional parameters - not present
-- An optional return statement - not present
-- Opening curly brace
+-   Starts with a keyword `func`
+-   The name of the function - `main`
+-   A list of optional parameters - not present
+-   An optional return statement - not present
+-   Opening curly brace
+
+---
 
 4. Code to be executed
 
-- Here we're using the `fmt` package and calling the method `Println`
-- This is similar to calling `console.log()` in JavaScript
-- Notice that Go uses double quotes
+-   Here we're using the `fmt` package and calling the method `Println`
+-   This is similar to calling `console.log()` in JavaScript
+-   Notice that Go uses double quotes
+
+---
 
 5. Closing curly brace
 
-- Indicates the end of a function
-- Is often preceded by a `return` statement, similar to JS
+-   Indicates the end of a function
+-   Is often preceded by a `return` statement, similar to JS
 
 > **_Try It_**
 > Throw the above baby function into the go playground and run the program.
+
+---
 
 ### Documentation
 
@@ -103,6 +128,8 @@ go doc fmt
 go doc fmt Println
 ```
 
+---
+
 ### Types
 
 Go is a _statically typed_ language. Unlike JavaScript, variables must have a
@@ -111,50 +138,60 @@ discrepancy in types, your program won't compile and you'll get an error.
 
 Let's talk about Go's built in types.
 
+---
+
 #### Integer: `1`, `2`, `44`
 
-- Example: `var age int = 21`
-- `int`,`uint8`,`uint16`, `uint32`, `uint64`, `int8`, `int16`, `int32`, `int64`
-- The `u` indicates an "unsigned" integer, which can only contain positive numbers or zero
-- `byte`: alias for `uint8`
-- `rune`: alias for `int32`
+-   Example: `var age int = 21`
+-   `int`,`uint8`,`uint16`, `uint32`, `uint64`, `int8`, `int16`, `int32`, `int64`
+-   The `u` indicates an "unsigned" integer, which can only contain positive numbers or zero
+-   `byte`: alias for `uint8`
+-   `rune`: alias for `int32`
+
+---
 
 #### Float: `1.5`, `3.14`, `2100`
 
-- Example: `var distanceInMiles float = 22.7`
-- Floats can contain a decimal point
-- `float32`, `float64`
-- To see a visual of the difference between how Go stores data in these two types, visit [this playground](https://play.golang.org/p/ZqzdCZLfvC)
+-   Example: `var distanceInMiles float = 22.7`
+-   Floats can contain a decimal point
+-   `float32`, `float64`
+-   To see a visual of the difference between how Go stores data in these two types, visit [this playground](https://play.golang.org/p/ZqzdCZLfvC)
+
+---
 
 #### String: `"The need for speed"`
 
-- Example: `var callSign string = "Maverick"`
-- Note that Go uses double quotes to indicate a string
+-   Example: `var callSign string = "Maverick"`
+-   Note that Go uses double quotes to indicate a string
 
 #### Booleans: `true`, `false`
 
-- Example: `var isLessThan bool = 1 < 5`
-- Can be generated using the expected logical and comparison operators
-- `&&`, `||`, `!`, `<, <=, >, >=, ==, !=`
+-   Example: `var isLessThan bool = 1 < 5`
+-   Can be generated using the expected logical and comparison operators
+-   `&&`, `||`, `!`, `<, <=, >, >=, ==, !=`
+
+---
 
 #### Error: `error`
 
-- Example: `error.Error()` ==> string
-- `log.Fatal(err)` will print the error message and stop execution
+-   Example: `error.Error()` ==> string
+-   `log.Fatal(err)` will print the error message and stop execution
 
 #### TypeOf
 
-- To check the type of a variable, you can use the `TypeOf()` method from the package `reflect`.
+-   To check the type of a variable, you can use the `TypeOf()` method from the package `reflect`.
 
 > **_TRY IT_**
 > Add `import reflect` under the `import fmt` statement, and then add `fmt.Println(reflect.TypeOf("hello"))`
 
-- You can also use string formatting within `fmt` to print out a type:
+-   You can also use string formatting within `fmt` to print out a type:
 
 ```go
 	var f float64 = 52.2
 	fmt.Printf("f has value %v and type %T", f, f)
 ```
+
+---
 
 #### Type Conversion
 
@@ -167,79 +204,88 @@ fmt.Println(reflect.TypeOf(age))
 fmt.Println(reflect.TypeOf(floatAge))
 ```
 
+---
+
 ### Variables
 
 Variables in Go are written in camel case, similar to JavaScript, and can be defined a few different ways.
 
 **Option 1:**
 
-- Initialize a variable with a type and the keyword `var`
-- Looks similar to JavaScript with an additional type declaration
+-   Initialize a variable with a type and the keyword `var`
+-   Looks similar to JavaScript with an additional type declaration
 
 ```go
 var pilot string = "Iceman"
 ```
 
+---
+
 **Option 2:**
 
-- Go can infer the type of initialized variables and the type declaration can be
-  omitted.
+-   Go can infer the type of initialized variables and the type declaration can be
+    omitted.
 
 ```go
 var pilot = "Iceman"
 ```
 
+---
+
 **Option 3:**
 
-- Feels similar to using `let` in JavaScript to instantiate and empty variable, but instead of storing the value as `undefined`, Go will default to the zero value for that type
-- string: `""`
-- int: `0`
-- float: `0`
-- bool: `false`
+-   Feels similar to using `let` in JavaScript to instantiate and empty variable, but instead of storing the value as `undefined`, Go will default to the zero value for that type
+-   string: `""`
+-   int: `0`
+-   float: `0`
+-   bool: `false`
 
 ```go
 var pilot string
 // This will have a default value of "" that can be modified later
 ```
 
+---
+
 **Option 4:**
 
-- Declare multiple variables at once
+-   Declare multiple variables at once
 
 ```go
 var pilot1, pilot2 string = "Goose", "Maverick"
 ```
 
+---
+
 **Option 5:**
 
-- Can only be used within a function
-- Most commonly used pattern
-- To declare and assign a default value at the same time
-- You can omit the keyword `var`, and go will infer the value
+-   Can only be used within a function
+-   Most commonly used pattern
+-   To declare and assign a default value at the same time
+-   You can omit the keyword `var`, and go will infer the value
 
 ```go
 pilot := "Iceman"
 ```
 
+---
+
 #### Var vs Const
 
-Consts, like in JavaSript, are variables who's values cannot be changed.
+Consts, like in JavaScript, are variables who's values cannot be changed.
 Attempting to modify a const will result in a run-time `panic`.
+
+--
 
 **Sidebar**:
 
-- Panic vs Error:
+#### Panic vs Error:
 
-  - There are two main types of errors in Go. Panic, and Error.
+-   There are two main types of errors in Go. Panic, and Error.
+-   Panic is used when the error is fatal to your program and there is nothing else that can be done to move forward.
+-   Errors indicate that something bad happened, but it might be possible to continue running the program. More on this later.
 
-    Panic is used when the error is fatal to your program and there is nothing else that can be done to move forward.
-
-  - Errors indicate that something bad happened, but it might be possible to continue running the program. More on this later.
-
-- RunTime vs CompileTime
-  - Reminder that compile time errors are events like syntax or typechecking errors. They occur when you as the developer are compiling your code.
-  - Run time errors happen after the program is compiled and a user or browser is trying to execute the code.
-  - These events are things like trying to open a file or url that doesn't exist, running out of memory, trying to do something that syntactically is legit but isn't valid in real life (like dividing by 0).
+---
 
 #### Scope
 
@@ -391,9 +437,9 @@ When looping over arrays, we can implement a different version of the basic for 
 
 Let's break it down:
 
-- `i` Still represents the index position we are pointing to in our array
-- `value` represents the value of the element at that index (aka `scores[i]`)
-- `range` is a keyword that is followed by the variable representing the array we are looping over
+-   `i` Still represents the index position we are pointing to in our array
+-   `value` represents the value of the element at that index (aka `scores[i]`)
+-   `range` is a keyword that is followed by the variable representing the array we are looping over
 
 > _TRY IT_
 > What happens when you replace the for loop from finding the average score with
@@ -450,7 +496,7 @@ underlying array that has a length of 10.
 
 Append:
 
-- `append(originalSlice, newEl1, newEl2)`
+-   `append(originalSlice, newEl1, newEl2)`
 
 ```go
   slice1 := []int{1, 2, 3}
@@ -460,7 +506,7 @@ Append:
 
 Copy:
 
-- `copy(destination, source)`
+-   `copy(destination, source)`
 
 ```go
     destination := make([]int, 2)
@@ -652,9 +698,9 @@ the variable `total`.
 Go has a few built in helper functions that help guide a go program to behave a
 certain way:
 
-- `defer`: executes a line of code last within a function
-- `panic`: called during a run time error, halts execution of the program
-- `recover`: tells go what to do after a panic
+-   `defer`: executes a line of code last within a function
+-   `panic`: called during a run time error, halts execution of the program
+-   `recover`: tells go what to do after a panic
 
 **Defer**
 
@@ -1179,25 +1225,25 @@ import (
 
 Some of the (many) available go packages are:
 
-- `strings` - simple functions to manipulate strings
+-   `strings` - simple functions to manipulate strings
 
-  - Example Methods: `Contains`, `Count`, `Index`, `HasPrefix`
+    -   Example Methods: `Contains`, `Count`, `Index`, `HasPrefix`
 
-- `io` - handles input/output methods related to the `os` package (like reading
-  files)
+-   `io` - handles input/output methods related to the `os` package (like reading
+    files)
 
-  - Example Methods: `Copy`, `Reader`, `Writer`
+    -   Example Methods: `Copy`, `Reader`, `Writer`
 
-- `os` - methods around operating system functionality
+-   `os` - methods around operating system functionality
 
-  - Example Methods: `Open`, `Rename`, `CreateFile`
+    -   Example Methods: `Open`, `Rename`, `CreateFile`
 
-- `testing` - Go's build in test suite
+-   `testing` - Go's build in test suite
 
-  - Example Methods: `Skip`, `Run`, `Error`
+    -   Example Methods: `Skip`, `Run`, `Error`
 
-- `net/http` - provides http client and server implementations
-  - Example Methods: `Get`, `Post`, `Handle`
+-   `net/http` - provides http client and server implementations
+    -   Example Methods: `Get`, `Post`, `Handle`
 
 ### Exported vs Unexported Names
 
@@ -1461,16 +1507,16 @@ func main() {
 
 ## Resources
 
-- [Offical Golang Docs](https://golang.org/doc/)
-- [Golang FAQ](https://golang.org/doc/faq#methods_on_values_or_pointers)
-- [How To Use Interfaces In
-  Go](https://jordanorelli.com/post/32665860244/how-to-use-interfaces-in-go)
-- [Introducing Go](http://shop.oreilly.com/product/0636920046516.do), Caleb
-  Doxsey, O'Reilly Publications
-- [Web Applications With
-  Go](https://blog.scottlogic.com/2017/02/28/building-a-web-app-with-go.html)
-- [Go Language Programming Practical Basics
-  Tutorial](https://www.youtube.com/playlist?list=PLQVvvaa0QuDeF3hP0wQoSxpkqgRcgxMqX)
-- [Star Wars API](https://swapi.co/)
-- Additional shout outs to my colleague Justin Holmes, and former colleagues
-  Mike McCrary and Steven Bogacz for their patience with my endless questions.
+-   [Offical Golang Docs](https://golang.org/doc/)
+-   [Golang FAQ](https://golang.org/doc/faq#methods_on_values_or_pointers)
+-   [How To Use Interfaces In
+    Go](https://jordanorelli.com/post/32665860244/how-to-use-interfaces-in-go)
+-   [Introducing Go](http://shop.oreilly.com/product/0636920046516.do), Caleb
+    Doxsey, O'Reilly Publications
+-   [Web Applications With
+    Go](https://blog.scottlogic.com/2017/02/28/building-a-web-app-with-go.html)
+-   [Go Language Programming Practical Basics
+    Tutorial](https://www.youtube.com/playlist?list=PLQVvvaa0QuDeF3hP0wQoSxpkqgRcgxMqX)
+-   [Star Wars API](https://swapi.co/)
+-   Additional shout outs to my colleague Justin Holmes, and former colleagues
+    Mike McCrary and Steven Bogacz for their patience with my endless questions.
