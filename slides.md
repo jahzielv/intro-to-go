@@ -1,3 +1,10 @@
+---
+theme: solarized
+revealOptions:
+    transition: "fade"
+highlightTheme: "solarized-dark"
+---
+
 # Introduction To Go
 
 ![gopher pic](https://golang.org/lib/godoc/images/footer-gopher.jpg)
@@ -88,29 +95,31 @@ func main() { //3
 Note:
 
 1. Package Declaration
-  -   Packages are go's way of organizing and reusing code within an application
-  -   These packages, like classes, expose different variables that can be used within a file
-  -   Every go program must have at least a `main` package
-  -   When you run `go install` Go creates a binary file which will call the `main()` function of your program
+
+-   Packages are go's way of organizing and reusing code within an application
+-   These packages, like classes, expose different variables that can be used within a file
+-   Every go program must have at least a `main` package
+-   When you run `go install` Go creates a binary file which will call the `main()` function of your program
 
 2. Imported packages and libraries
-  -   Exposes code from built in go libraries, third party packages, or internally created packages your program needs
-  -   In this case, the package `fmt` comes with go and provides formatting methods for standard input and output
-  -   Also, it's pronounced "fumpt". 🙄
+
+-   Exposes code from built in go libraries, third party packages, or internally created packages your program needs
+-   In this case, the package `fmt` comes with go and provides formatting methods for standard input and output
+-   Also, it's pronounced "fumpt". 🙄
 
 3. The `main()` go function signature
 
-  -   Starts with a keyword `func`
-  -   The name of the function - `main`
-  -   A list of optional parameters - not present
-  -   An optional return statement - not present
-  -   Opening curly brace
+-   Starts with a keyword `func`
+-   The name of the function - `main`
+-   A list of optional parameters - not present
+-   An optional return statement - not present
+-   Opening curly brace
 
 4. Code to be executed
 
-  -   Here we're using the `fmt` package and calling the method `Println`
-  -   This is similar to calling `console.log()` in JavaScript
-  -   Notice that Go uses double quotes
+-   Here we're using the `fmt` package and calling the method `Println`
+-   This is similar to calling `console.log()` in JavaScript
+-   Notice that Go uses double quotes
 
 ---
 
@@ -187,7 +196,7 @@ var isLessThan bool = 1 < 5
 
 ---
 
-####  Checking types
+#### Checking types
 
 -   To check the type of a variable, you can use the `TypeOf()` method from the package `reflect`.
 
@@ -248,10 +257,10 @@ var pilot = "Iceman"
 
 -   Instantiate without explicit assignment
 -   Go implicitly assigns "zero value" to the var:
-  -   string: `""`
-  -   int: `0`
-  -   float: `0`
-  -   bool: `false`
+-   string: `""`
+-   int: `0`
+-   float: `0`
+-   bool: `false`
 
 ```go
 var pilot string
@@ -322,14 +331,13 @@ func main() {
 
 Note:
 
-- <init>: executed before the first iteration. Usually count setup, but not necessarily
-- <condition>: boolean expression. False -> termination of loop
-- <post>: executes after each iteration
-- <init> and <post> are optional
-- statements don't need parens
-- braces always required
-- vars declared in <init> or in loop are locally scoped to for loop
-
+-   <init>: executed before the first iteration. Usually count setup, but not necessarily
+-   <condition>: boolean expression. False -> termination of loop
+-   <post>: executes after each iteration
+-   <init> and <post> are optional
+-   statements don't need parens
+-   braces always required
+-   vars declared in <init> or in loop are locally scoped to for loop
 
 ---
 
@@ -356,10 +364,10 @@ func main() {
   }
 }
 ```
+
 ---
 
 #### If Statements
-
 
 ```go
   if i > 100 {
@@ -372,9 +380,10 @@ func main() {
 ```
 
 Note:
-- No parens around condition!
-- braces always required
-- vars declared in if are scoped there
+
+-   No parens around condition!
+-   braces always required
+-   vars declared in if are scoped there
 
 ---
 
@@ -392,8 +401,10 @@ Note:
 ---
 
 ### Data Structures
+
 2. Arrays
 3. Slices
+
 ---
 
 #### Arrays
